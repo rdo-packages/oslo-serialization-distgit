@@ -1,8 +1,10 @@
 # Created by pyp2rpm-1.0.1
 %global pypi_name oslo.serialization
 
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:           python-oslo-serialization
-Version:        1.6.0
+Version:        1.8.0
 Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
@@ -37,7 +39,7 @@ BuildRequires:  python-msgpack
 Documentation for the Oslo serialization library.
 
 %prep
-%setup -q -n %{pypi_name}-%{version}
+%setup -q -n %{pypi_name}-%{upstream_version}
 # Let RPM handle the dependencies
 rm -f requirements.txt
 
@@ -60,15 +62,17 @@ rm -fr %{buildroot}%{python2_sitelib}/%{pypi_name}/tests/
 %files
 %doc README.rst LICENSE
 %{python2_sitelib}/oslo_serialization
-%{python2_sitelib}/oslo
 %{python2_sitelib}/*.egg-info
-%{python2_sitelib}/*-nspkg.pth
+%{python2_sitelib}/*.egg-info
 
 %files doc
 %doc html LICENSE
 
 
 %changelog
+* Tue Aug 18 2015 Alan Pevec <alan.pevec@redhat.com> 1.8.0-1
+- Update to upstream 1.8.0
+
 * Mon Jun 29 2015 Alan Pevec <alan.pevec@redhat.com> 1.6.0-1
 - Update to upstream 1.6.0
 
@@ -86,4 +90,3 @@ rm -fr %{buildroot}%{python2_sitelib}/%{pypi_name}/tests/
 
 * Wed Sep 17 2014 Nejc Saje <nsaje@redhat.com> - 0.3.0-1
 - Initial package (#1142753)
-

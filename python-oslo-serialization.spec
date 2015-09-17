@@ -1,10 +1,15 @@
 # Created by pyp2rpm-1.0.1
 %global pypi_name oslo.serialization
+%global pname oslo-serialization
+
+%if 0%{?fedora}
+%global with_python3 1
+%endif
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:           python-oslo-serialization
-Version:        1.8.0
+Version:        1.9.0
 Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
@@ -13,8 +18,17 @@ URL:            https://launchpad.net/oslo
 Source0:        https://pypi.python.org/packages/source/o/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
+%description
+An OpenStack library for representing objects in transmittable and
+storable formats.
+
+%package -n     python2-%{pname}
+Summary:        OpenStack oslo.serialization library
+%{?python_provide:%python_provide python2-%{pname}}
+
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
+
 Requires:       python-babel
 Requires:       python-iso8601
 Requires:       python-oslo-utils
@@ -22,11 +36,11 @@ Requires:       python-six
 Requires:       python-msgpack
 Requires:       pytz
 
-%description
+%description -n python2-%{pname}
 An OpenStack library for representing objects in transmittable and
 storable formats.
 
-%package doc
+%package -n python2-%{pname}-doc
 Summary:    Documentation for the Oslo serialization library
 Group:      Documentation
 
@@ -35,41 +49,83 @@ BuildRequires:  python-oslo-sphinx
 BuildRequires:  python-oslo-utils
 BuildRequires:  python-msgpack
 
-%description doc
+%description -n python2-%{pname}-doc
 Documentation for the Oslo serialization library.
+
+%if 0%{?with_python3}
+%package -n     python3-%{pname}
+Summary:        OpenStack oslo.serialization library
+%{?python_provide:%python_provide python3-%{pname}}
+
+BuildRequires:  python3-devel
+BuildRequires:  python3-pbr
+
+Requires:       python3-babel
+Requires:       python3-iso8601
+Requires:       python3-oslo-utils
+Requires:       python3-six
+Requires:       python3-msgpack
+Requires:       python3-pytz
+
+%description -n python3-%{pname}
+An OpenStack library for representing objects in transmittable and
+storable formats.
+%endif
 
 %prep
 %setup -q -n %{pypi_name}-%{upstream_version}
-# Let RPM handle the dependencies
-rm -f requirements.txt
 
+# Let RPM handle the dependencies
+rm -rf {test-,}requirements.txt
 
 %build
 %{__python2} setup.py build
+%if 0%{?with_python3}
+%{__python3} setup.py build
+%endif
 
 # generate html docs
 sphinx-build doc/source html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
-
 %install
 %{__python2} setup.py install --skip-build --root %{buildroot}
+%if 0%{?with_python3}
+%{__python3} setup.py install --skip-build --root %{buildroot}
+%endif
 
-#delete tests
-rm -fr %{buildroot}%{python2_sitelib}/%{pypi_name}/tests/
+%check
+%{__python2} setup.py test
+%if 0%{?with_python3}
+%{__python3} setup.py test
+%endif
 
-%files
-%doc README.rst LICENSE
+%files -n python2-%{pname}
+%doc README.rst
+%license LICENSE
 %{python2_sitelib}/oslo_serialization
 %{python2_sitelib}/*.egg-info
-%{python2_sitelib}/*.egg-info
 
-%files doc
-%doc html LICENSE
+%if 0%{?with_python3}
+%files -n python3-%{pname}
+%doc README.rst
+%license LICENSE
+%{python3_sitelib}/oslo_serialization
+%{python3_sitelib}/*.egg-info
+%endif
+
+%files -n python2-%{pname}-doc
+%doc html
+%license LICENSE
 
 
 %changelog
+* Tue Sep 15 2015 Lukas Bezdicka <lbezdick@redhat.com> 1.9.0-1
+- Update to upstream 1.9.0
+- Add python3 subpackage
+- Enable tests
+
 * Tue Aug 18 2015 Alan Pevec <alan.pevec@redhat.com> 1.8.0-1
 - Update to upstream 1.8.0
 

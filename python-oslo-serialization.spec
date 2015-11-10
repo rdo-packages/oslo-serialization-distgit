@@ -10,7 +10,7 @@
 
 Name:           python-oslo-serialization
 Version:        1.9.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -121,6 +121,9 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
+* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.9.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
 * Tue Sep 15 2015 Lukas Bezdicka <lbezdick@redhat.com> 1.9.0-1
 - Update to upstream 1.9.0
 - Add python3 subpackage

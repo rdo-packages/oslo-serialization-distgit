@@ -10,7 +10,7 @@
 
 Name:           python-oslo-serialization
 Version:        1.9.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -108,6 +108,11 @@ rm -rf html/.{doctrees,buildinfo}
 
 %check
 %{__python2} setup.py test
+
+# Got to know about this ugly hack from 
+# https://bugs.launchpad.net/testrepository/+bug/1229445
+rm .testrepository/times.dbm
+
 %if 0%{?with_python3}
 %{__python3} setup.py test
 %endif
@@ -132,6 +137,9 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
+* Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 1.9.0-4
+- python3 test failed, workaround found in some launchpad bug
+
 * Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 1.9.0-3
 - Try Adding few missing BuildRequires: for python3 subpackage
 

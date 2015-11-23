@@ -10,7 +10,7 @@
 
 Name:           python-oslo-serialization
 Version:        1.9.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -28,6 +28,12 @@ Summary:        OpenStack oslo.serialization library
 
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
+BuildRequires:  python-oslo-utils
+BuildRequires:  python-msgpack
+BuildRequires:  python-mock
+BuildRequires:  python-oslotest
+BuildRequires:  python-subunit
+BuildRequires:  python-simplejson
 
 Requires:       python-babel
 Requires:       python-iso8601
@@ -46,7 +52,6 @@ Group:      Documentation
 
 BuildRequires:  python-sphinx
 BuildRequires:  python-oslo-sphinx
-BuildRequires:  python-oslo-utils
 BuildRequires:  python-msgpack
 
 %description -n python2-%{pname}-doc
@@ -59,6 +64,12 @@ Summary:        OpenStack oslo.serialization library
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
+BuildRequires:  python3-oslo-utils
+BuildRequires:  python3-msgpack
+BuildRequires:  python3-mock
+BuildRequires:  python3-oslotest
+BuildRequires:  python3-subunit
+BuildRequires:  python3-simplejson
 
 Requires:       python3-babel
 Requires:       python3-iso8601
@@ -121,6 +132,9 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %changelog
+* Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 1.9.0-3
+- Try Adding few missing BuildRequires: for python3 subpackage
+
 * Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.9.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
 

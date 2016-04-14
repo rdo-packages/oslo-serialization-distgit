@@ -1,5 +1,5 @@
-# UUID          Group Name
-6ddfecad023c6f4fa3ac8c4d2583c502ea675a73 	Non-Interactive Users
-76a91653b0b6a300d33c53e587ea9dc0e1aee39a       	oslo-serialization-distgit-core
-0e0f6684d592fdf6c2c5d1f1510dd3488d14c024        	oslo-serialization-distgit-ptl
-global:Registered-Users		Registered Users
+# UUID                                  	Group Name
+#
+0e0f6684d592fdf6c2c5d1f1510dd3488d14c024	openstack/oslo-serialization-distgit-ptl
+76a91653b0b6a300d33c53e587ea9dc0e1aee39a	oslo-serialization-distgit-core
+global:Registered-Users                 	Registered Users

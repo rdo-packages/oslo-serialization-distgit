@@ -1,0 +1,37 @@
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.9.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
+* Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 1.9.0-4
+- python3 test failed, workaround found in some launchpad bug
+
+* Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 1.9.0-3
+- Try Adding few missing BuildRequires: for python3 subpackage
+
+* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.9.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
+* Tue Sep 15 2015 Lukas Bezdicka <lbezdick@redhat.com> 1.9.0-1
+- Update to upstream 1.9.0
+- Add python3 subpackage
+- Enable tests
+
+* Tue Aug 18 2015 Alan Pevec <alan.pevec@redhat.com> 1.8.0-1
+- Update to upstream 1.8.0
+
+* Mon Jun 29 2015 Alan Pevec <alan.pevec@redhat.com> 1.6.0-1
+- Update to upstream 1.6.0
+
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
+* Wed Apr 01 2015 Alan Pevec <alan.pevec@redhat.com> 1.4.0-1
+- Update to upstream 1.4.0
+
+* Tue Feb 24 2015 Alan Pevec <alan.pevec@redhat.com> 1.3.0-1
+- Update to upstream 1.3.0
+
+* Fri Dec 19 2014 Alan Pevec <apevec@redhat.com> - 1.1.0-1
+- update to 1.1.0
+
+* Wed Sep 17 2014 Nejc Saje <nsaje@redhat.com> - 0.3.0-1
+- Initial package (#1142753)

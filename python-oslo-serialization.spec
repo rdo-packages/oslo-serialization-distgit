@@ -1,16 +1,15 @@
-# Created by pyp2rpm-1.0.1
 %global pypi_name oslo.serialization
-%global pname oslo-serialization
+%global pkg_name oslo-serialization
 
-%if 0%{?fedora}
+%if 0%{?fedora} >= 24
 %global with_python3 1
 %endif
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
-Name:           python-oslo-serialization
-Version:        1.9.0
-Release:        5%{?dist}
+Name:           python-%{pkg_name}
+Version:        2.4.0
+Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -22,155 +21,147 @@ BuildArch:      noarch
 An OpenStack library for representing objects in transmittable and
 storable formats.
 
-%package -n     python2-%{pname}
+%package -n python2-%{pkg_name}
 Summary:        OpenStack oslo.serialization library
-%{?python_provide:%python_provide python2-%{pname}}
+%{?python_provide:%python_provide python2-%{pkg_name}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
-BuildRequires:  python-oslo-utils
-BuildRequires:  python-msgpack
+# test requirements
+BuildRequires:  python-hacking
 BuildRequires:  python-mock
+BuildRequires:  python-netaddr
 BuildRequires:  python-oslotest
-BuildRequires:  python-subunit
 BuildRequires:  python-simplejson
+BuildRequires:  python-oslo-i18n
+BuildRequires:  python-coverage
 
 Requires:       python-babel
 Requires:       python-iso8601
 Requires:       python-oslo-utils
 Requires:       python-six
 Requires:       python-msgpack
-Requires:       pytz
 
-%description -n python2-%{pname}
+%description -n python2-%{pkg_name}
 An OpenStack library for representing objects in transmittable and
 storable formats.
 
-%package -n python2-%{pname}-doc
-Summary:    Documentation for the Oslo serialization library
-Group:      Documentation
 
-BuildRequires:  python-sphinx
-BuildRequires:  python-oslo-sphinx
-BuildRequires:  python-msgpack
+%package -n python-%{pkg_name}-tests
+Summary:   Tests for OpenStack Oslo serialization library
 
-%description -n python2-%{pname}-doc
-Documentation for the Oslo serialization library.
+Requires:  python-%{pkg_name} = %{version}-%{release}
+Requires:  python-hacking
+Requires:  python-mock
+Requires:  python-netaddr
+Requires:  python-oslotest
+Requires:  python-simplejson
+Requires:  python-oslo-i18n
+Requires:  python-coverage
+
+%description -n python-%{pkg_name}-tests
+Tests for OpenStack Oslo serialization library
 
 %if 0%{?with_python3}
-%package -n     python3-%{pname}
+%package -n python3-%{pkg_name}
 Summary:        OpenStack oslo.serialization library
-%{?python_provide:%python_provide python3-%{pname}}
+%{?python_provide:%python_provide python3-%{pkg_name}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
-BuildRequires:  python3-oslo-utils
-BuildRequires:  python3-msgpack
+# test requirements
+BuildRequires:  python3-hacking
 BuildRequires:  python3-mock
+BuildRequires:  python3-netaddr
 BuildRequires:  python3-oslotest
-BuildRequires:  python3-subunit
 BuildRequires:  python3-simplejson
+BuildRequires:  python3-oslo-i18n
+BuildRequires:  python3-coverage
 
 Requires:       python3-babel
 Requires:       python3-iso8601
 Requires:       python3-oslo-utils
 Requires:       python3-six
 Requires:       python3-msgpack
-Requires:       python3-pytz
 
-%description -n python3-%{pname}
+%description -n python3-%{pkg_name}
 An OpenStack library for representing objects in transmittable and
 storable formats.
 %endif
 
+%package -n python-%{pkg_name}-doc
+Summary:    Documentation for the Oslo serialization library
+
+BuildRequires:  python-sphinx
+BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-oslo-utils
+BuildRequires:  python-msgpack
+
+Requires:  python-%{pkg_name} = %{version}-%{release}
+
+%description -n python-%{pkg_name}-doc
+Documentation for the Oslo serialization library.
+
 %prep
 %setup -q -n %{pypi_name}-%{upstream_version}
-
 # Let RPM handle the dependencies
-rm -rf {test-,}requirements.txt
+rm -f requirements.txt
 
 %build
-%{__python2} setup.py build
+%py2_build
+
+# doc
+export PYTHONPATH="$( pwd ):$PYTHONPATH"
+pushd doc
+sphinx-build -b html -d build/doctrees   source build/html
+popd
+# Fix hidden-file-or-dir warnings
+rm -fr doc/build/html/.buildinfo
+
 %if 0%{?with_python3}
-%{__python3} setup.py build
+%py3_build
 %endif
 
-# generate html docs
-sphinx-build doc/source html
-# remove the sphinx-build leftovers
-rm -rf html/.{doctrees,buildinfo}
-
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%py2_install
+
 %if 0%{?with_python3}
-%{__python3} setup.py install --skip-build --root %{buildroot}
+%py3_install
 %endif
 
 %check
 %{__python2} setup.py test
-
-# Got to know about this ugly hack from 
-# https://bugs.launchpad.net/testrepository/+bug/1229445
-rm .testrepository/times.dbm
-
 %if 0%{?with_python3}
+rm -rf .testrepository
 %{__python3} setup.py test
 %endif
 
-%files -n python2-%{pname}
+%files -n python2-%{pkg_name}
 %doc README.rst
 %license LICENSE
 %{python2_sitelib}/oslo_serialization
 %{python2_sitelib}/*.egg-info
+%exclude %{python2_sitelib}/oslo_serialization/tests
+
 
 %if 0%{?with_python3}
-%files -n python3-%{pname}
+%files -n python3-%{pkg_name}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/oslo_serialization
 %{python3_sitelib}/*.egg-info
+%exclude %{python3_sitelib}/oslo_serialization/tests
 %endif
 
-%files -n python2-%{pname}-doc
-%doc html
+%files -n python-%{pkg_name}-doc
+%doc doc/build/html
 %license LICENSE
+
+%files -n python-%{pkg_name}-tests
+%{python2_sitelib}/oslo_serialization/tests
 
 
 %changelog
-* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.9.0-5
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+* Tue Mar 22 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.4.0-
+- Update to 2.4.0
 
-* Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 1.9.0-4
-- python3 test failed, workaround found in some launchpad bug
-
-* Mon Nov 23 2015 Parag Nemade <pnemade AT redhat DOT com> - 1.9.0-3
-- Try Adding few missing BuildRequires: for python3 subpackage
-
-* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.9.0-2
-- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
-
-* Tue Sep 15 2015 Lukas Bezdicka <lbezdick@redhat.com> 1.9.0-1
-- Update to upstream 1.9.0
-- Add python3 subpackage
-- Enable tests
-
-* Tue Aug 18 2015 Alan Pevec <alan.pevec@redhat.com> 1.8.0-1
-- Update to upstream 1.8.0
-
-* Mon Jun 29 2015 Alan Pevec <alan.pevec@redhat.com> 1.6.0-1
-- Update to upstream 1.6.0
-
-* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.4.0-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
-
-* Wed Apr 01 2015 Alan Pevec <alan.pevec@redhat.com> 1.4.0-1
-- Update to upstream 1.4.0
-
-* Tue Feb 24 2015 Alan Pevec <alan.pevec@redhat.com> 1.3.0-1
-- Update to upstream 1.3.0
-
-* Fri Dec 19 2014 Alan Pevec <apevec@redhat.com> - 1.1.0-1
-- update to 1.1.0
-
-* Wed Sep 17 2014 Nejc Saje <nsaje@redhat.com> - 0.3.0-1
-- Initial package (#1142753)

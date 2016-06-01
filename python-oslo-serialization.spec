@@ -9,7 +9,7 @@
 
 Name:           python-%{pkg_name}
 Version:        2.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -61,6 +61,23 @@ Requires:  python-coverage
 
 %description -n python-%{pkg_name}-tests
 Tests for OpenStack Oslo serialization library
+
+%if 0%{?with_python3}
+%package -n python3-%{pkg_name}-tests
+Summary:    Tests for OpenStack Oslo serialization library
+
+Requires:  python3-%{pkg_name} = %{version}-%{release}
+Requires:  python3-hacking
+Requires:  python3-mock
+Requires:  python3-netaddr
+Requires:  python3-oslotest
+Requires:  python3-simplejson
+Requires:  python3-oslo-i18n
+Requires:  python3-coverage
+
+%description -n python3-%{pkg_name}-tests
+Tests for OpenStack Oslo serialization library
+%endif
 
 %if 0%{?with_python3}
 %package -n python3-%{pkg_name}
@@ -160,8 +177,15 @@ rm -rf .testrepository
 %files -n python-%{pkg_name}-tests
 %{python2_sitelib}/oslo_serialization/tests
 
+%if 0%{?with_python3}
+%files -n python3-%{pkg_name}-tests
+%{python3_sitelib}/oslo_serialization/tests
+%endif
 
 %changelog
-* Tue Mar 22 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.4.0-
+* Wed Jun 01 2016 Charalampos Stratakis <cstratak@redhat.com> 2.4.0-2
+- Provide a python 3 tests subpackage
+
+* Tue Mar 22 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.4.0-1
 - Update to 2.4.0
 

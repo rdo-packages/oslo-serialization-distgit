@@ -33,12 +33,14 @@ BuildRequires:  python-oslotest
 BuildRequires:  python-simplejson
 BuildRequires:  python-oslo-i18n
 BuildRequires:  python-coverage
+BuildRequires:  python-ipaddress
 
 Requires:       python-babel
 Requires:       python-iso8601
 Requires:       python-oslo-utils
 Requires:       python-six
 Requires:       python-msgpack
+Requires:       python-ipaddress
 
 %description -n python2-%{pkg_name}
 An OpenStack library for representing objects in transmittable and

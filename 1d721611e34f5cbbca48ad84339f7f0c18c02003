@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa2559ec_cd45ddb4",
+        "filename": "python-oslo-serialization.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2016-06-27T16:00:24Z",
+      "side": 1,
+      "message": "This may not be needed, now that the -tests subpackages include it.",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 52
+      },
+      "revId": "1d721611e34f5cbbca48ad84339f7f0c18c02003",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa2559ec_2d12b9b4",
+        "filename": "python-oslo-serialization.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2016-06-27T16:00:24Z",
+      "side": 1,
+      "message": "Ditto",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 52
+      },
+      "revId": "1d721611e34f5cbbca48ad84339f7f0c18c02003",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}

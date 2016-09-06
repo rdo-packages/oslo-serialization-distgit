@@ -8,7 +8,7 @@
 
 Name:           python-%{pkg_name}
 Version:        2.13.0
-Release:        1
+Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0

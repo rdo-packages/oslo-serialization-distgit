@@ -24,6 +24,7 @@ storable formats.
 Summary:        OpenStack oslo.serialization library
 %{?python_provide:%python_provide python2-%{pkg_name}}
 
+BuildRequires:  git
 BuildRequires:  python2-devel
 BuildRequires:  python-pbr
 # test requirements
@@ -111,7 +112,7 @@ storable formats.
 Summary:    Documentation for the Oslo serialization library
 
 BuildRequires:  python-sphinx
-BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-openstackdocstheme
 BuildRequires:  python-oslo-utils
 BuildRequires:  python-msgpack
 
@@ -121,7 +122,7 @@ Requires:  python-%{pkg_name} = %{version}-%{release}
 Documentation for the Oslo serialization library.
 
 %prep
-%setup -q -n %{pypi_name}-%{upstream_version}
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
 # Let RPM handle the dependencies
 rm -f requirements.txt
 
@@ -129,10 +130,7 @@ rm -f requirements.txt
 %py2_build
 
 # doc
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build -b html -d build/doctrees   source build/html
-popd
+python setup.py build_sphinx -b html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
 

@@ -34,7 +34,6 @@ BuildRequires:  python-netaddr
 BuildRequires:  python-oslotest
 BuildRequires:  python-simplejson
 BuildRequires:  python-oslo-i18n
-BuildRequires:  python-coverage
 BuildRequires:  python-ipaddress
 
 Requires:       python-babel
@@ -59,7 +58,6 @@ Requires:  python-netaddr
 Requires:  python-oslotest
 Requires:  python-simplejson
 Requires:  python-oslo-i18n
-Requires:  python-coverage
 
 %description -n python-%{pkg_name}-tests
 Tests for OpenStack Oslo serialization library
@@ -75,7 +73,6 @@ Requires:  python3-netaddr
 Requires:  python3-oslotest
 Requires:  python3-simplejson
 Requires:  python3-oslo-i18n
-Requires:  python3-coverage
 
 %description -n python3-%{pkg_name}-tests
 Tests for OpenStack Oslo serialization library
@@ -95,7 +92,6 @@ BuildRequires:  python3-netaddr
 BuildRequires:  python3-oslotest
 BuildRequires:  python3-simplejson
 BuildRequires:  python3-oslo-i18n
-BuildRequires:  python3-coverage
 
 Requires:       python3-babel
 Requires:       python3-iso8601

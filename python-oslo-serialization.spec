@@ -38,7 +38,7 @@ BuildRequires:  python-ipaddress
 
 Requires:       python-babel
 Requires:       python-iso8601
-Requires:       python-oslo-utils
+Requires:       python-oslo-utils >= 3.20.0
 Requires:       python-six
 Requires:       python-msgpack
 Requires:       python-ipaddress
@@ -95,7 +95,7 @@ BuildRequires:  python3-oslo-i18n
 
 Requires:       python3-babel
 Requires:       python3-iso8601
-Requires:       python3-oslo-utils
+Requires:       python3-oslo-utils >= 3.20.0
 Requires:       python3-six
 Requires:       python3-msgpack
 

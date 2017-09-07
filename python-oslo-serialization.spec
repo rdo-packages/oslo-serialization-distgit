@@ -6,6 +6,10 @@
 %global with_python3 1
 %endif
 
+%global common_desc \
+An OpenStack library for representing objects in transmittable and \
+storable formats.
+
 Name:           python-%{pkg_name}
 Version:        XXX
 Release:        XXX
@@ -17,8 +21,7 @@ Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstr
 BuildArch:      noarch
 
 %description
-An OpenStack library for representing objects in transmittable and
-storable formats.
+%{common_desc}
 
 %package -n python2-%{pkg_name}
 Summary:        OpenStack oslo.serialization library
@@ -44,8 +47,7 @@ Requires:       python-msgpack
 Requires:       python-ipaddress
 
 %description -n python2-%{pkg_name}
-An OpenStack library for representing objects in transmittable and
-storable formats.
+%{common_desc}
 
 
 %package -n python-%{pkg_name}-tests
@@ -100,8 +102,7 @@ Requires:       python3-six
 Requires:       python3-msgpack
 
 %description -n python3-%{pkg_name}
-An OpenStack library for representing objects in transmittable and
-storable formats.
+%{common_desc}
 %endif
 
 %package -n python-%{pkg_name}-doc

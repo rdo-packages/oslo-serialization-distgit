@@ -1,7 +1,7 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global pypi_name oslo.serialization
 %global pkg_name oslo-serialization
-
+%global with_doc 1
 %if 0%{?fedora} >= 24
 %global with_python3 1
 %endif
@@ -105,6 +105,7 @@ Requires:       python3-msgpack
 %{common_desc}
 %endif
 
+%if 0%{?with_doc}
 %package -n python-%{pkg_name}-doc
 Summary:    Documentation for the Oslo serialization library
 
@@ -117,6 +118,7 @@ Requires:  python-%{pkg_name} = %{version}-%{release}
 
 %description -n python-%{pkg_name}-doc
 Documentation for the Oslo serialization library.
+%endif
 
 %prep
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
@@ -126,10 +128,12 @@ rm -f requirements.txt
 %build
 %py2_build
 
+%if 0%{?with_doc}
 # doc
 python setup.py build_sphinx -b html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
+%endif
 
 %if 0%{?with_python3}
 %py3_build
@@ -166,9 +170,11 @@ rm -rf .testrepository
 %exclude %{python3_sitelib}/oslo_serialization/tests
 %endif
 
+%if 0%{?with_doc}
 %files -n python-%{pkg_name}-doc
 %doc doc/build/html
 %license LICENSE
+%endif
 
 %files -n python-%{pkg_name}-tests
 %{python2_sitelib}/oslo_serialization/tests

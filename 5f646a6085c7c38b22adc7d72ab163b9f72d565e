@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a961159_16e2799f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 127
+      },
+      "writtenOn": "2017-09-19T13:47:42Z",
+      "side": 1,
+      "message": "NIT: can we please re-format for better git commit message\n\nfirst line\n\u003cblank line\u003e\nResolves: redhat-openstack/easyfix#4\nChange-Id: ....\n\nThis is standard git commit message formatting",
+      "range": {
+        "startLine": 8,
+        "startChar": 25,
+        "endLine": 8,
+        "endChar": 26
+      },
+      "revId": "5f646a6085c7c38b22adc7d72ab163b9f72d565e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}

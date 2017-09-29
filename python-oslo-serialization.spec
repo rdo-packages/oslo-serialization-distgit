@@ -7,7 +7,7 @@
 %endif
 
 Name:           python-%{pkg_name}
-Version:        2.16.0
+Version:        2.16.1
 Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
@@ -184,6 +184,9 @@ rm -rf .testrepository
 %endif
 
 %changelog
+* Fri Sep 29 2017 rdo-trunk <javier.pena@redhat.com> 2.16.1-1
+- Update to 2.16.1
+
 * Wed Feb 08 2017 Alfredo Moralejo <amoralej@redhat.com> 2.16.0-1
 - Update to 2.16.0
 

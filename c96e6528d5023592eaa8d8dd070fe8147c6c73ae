@@ -1,0 +1,8 @@
+Code-Review+2: Alfredo Moralejo <amoralej@redhat.com>
+Workflow+1: Alfredo Moralejo <amoralej@redhat.com>
+Verified+2: Jenkins CI <admin@rpmfactory.beta.rdoproject.org>
+Submitted-by: Jenkins CI <admin@rpmfactory.beta.rdoproject.org>
+Submitted-at: Fri, 29 Sep 2017 18:50:00 +0000
+Reviewed-on: https://review.rdoproject.org/r/9840
+Project: openstack/oslo-serialization-distgit
+Branch: refs/heads/ocata-rdo

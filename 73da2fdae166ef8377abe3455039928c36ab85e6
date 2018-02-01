@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa53dc9_94af32e3",
+        "filename": "python-oslo-serialization.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-02-01T11:02:32Z",
+      "side": 1,
+      "message": "This is python-ipaddress in centos.",
+      "range": {
+        "startLine": 38,
+        "startChar": 17,
+        "endLine": 38,
+        "endChar": 33
+      },
+      "revId": "73da2fdae166ef8377abe3455039928c36ab85e6",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}

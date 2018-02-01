@@ -29,39 +29,54 @@ Summary:        OpenStack oslo.serialization library
 
 BuildRequires:  git
 BuildRequires:  python2-devel
-BuildRequires:  python-pbr
+BuildRequires:  python2-pbr
 # test requirements
-BuildRequires:  python-hacking
-BuildRequires:  python-mock
+BuildRequires:  python2-hacking
+BuildRequires:  python2-mock
+BuildRequires:  python2-oslotest
+BuildRequires:  python2-oslo-i18n
+BuildRequires:  python2-ipaddress
+%if 0%{?fedora} > 0
+BuildRequires:  python2-netaddr
+BuildRequires:  python2-simplejson
+%else
 BuildRequires:  python-netaddr
-BuildRequires:  python-oslotest
 BuildRequires:  python-simplejson
-BuildRequires:  python-oslo-i18n
-BuildRequires:  python-ipaddress
+%endif
 
-Requires:       python-babel
-Requires:       python-iso8601
-Requires:       python-oslo-utils >= 3.20.0
-Requires:       python-six
+Requires:       python2-babel
+Requires:       python2-iso8601
+Requires:       python2-oslo-utils >= 3.33.0
+Requires:       python2-six
+Requires:       python2-ipaddress
+%if 0%{?fedora} > 0
+Requires:       python2-msgpack
+%else
 Requires:       python-msgpack
-Requires:       python-ipaddress
+%endif
 
 %description -n python2-%{pkg_name}
 %{common_desc}
 
 
-%package -n python-%{pkg_name}-tests
+%package -n python2-%{pkg_name}-tests
 Summary:   Tests for OpenStack Oslo serialization library
+%{?python_provide:%python_provide python2-%{pkg_name}}
 
-Requires:  python-%{pkg_name} = %{version}-%{release}
-Requires:  python-hacking
-Requires:  python-mock
+Requires:  python2-%{pkg_name} = %{version}-%{release}
+Requires:  python2-hacking
+Requires:  python2-mock
+Requires:  python2-oslotest
+Requires:  python2-oslo-i18n
+%if 0%{?fedora} > 0
+Requires:  python2-netaddr
+Requires:  python2-simplejson
+%else
 Requires:  python-netaddr
-Requires:  python-oslotest
 Requires:  python-simplejson
-Requires:  python-oslo-i18n
+%endif
 
-%description -n python-%{pkg_name}-tests
+%description -n python2-%{pkg_name}-tests
 Tests for OpenStack Oslo serialization library
 
 %if 0%{?with_python3}
@@ -97,7 +112,7 @@ BuildRequires:  python3-oslo-i18n
 
 Requires:       python3-babel
 Requires:       python3-iso8601
-Requires:       python3-oslo-utils >= 3.20.0
+Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-six
 Requires:       python3-msgpack
 
@@ -108,12 +123,16 @@ Requires:       python3-msgpack
 %package -n python-%{pkg_name}-doc
 Summary:    Documentation for the Oslo serialization library
 
-BuildRequires:  python-sphinx
-BuildRequires:  python-openstackdocstheme
-BuildRequires:  python-oslo-utils
+BuildRequires:  python2-sphinx
+BuildRequires:  python2-openstackdocstheme
+BuildRequires:  python2-oslo-utils
+%if 0%{?fedora} > 0
+BuildRequires:  python2-msgpack
+%else
 BuildRequires:  python-msgpack
+%endif
 
-Requires:  python-%{pkg_name} = %{version}-%{release}
+Requires:  python2-%{pkg_name} = %{version}-%{release}
 
 %description -n python-%{pkg_name}-doc
 Documentation for the Oslo serialization library.
@@ -170,7 +189,7 @@ rm -rf .testrepository
 %doc doc/build/html
 %license LICENSE
 
-%files -n python-%{pkg_name}-tests
+%files -n python2-%{pkg_name}-tests
 %{python2_sitelib}/oslo_serialization/tests
 
 %if 0%{?with_python3}

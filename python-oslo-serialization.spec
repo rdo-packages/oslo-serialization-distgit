@@ -49,11 +49,10 @@ Requires:       python2-babel
 Requires:       python2-iso8601
 Requires:       python2-oslo-utils >= 3.33.0
 Requires:       python2-six
+Requires:       python2-msgpack >= 0.5.2
 %if 0%{?fedora} > 0
-Requires:       python2-msgpack
 Requires:       python2-ipaddress
 %else
-Requires:       python-msgpack
 Requires:       python-ipaddress
 %endif
 
@@ -116,7 +115,7 @@ Requires:       python3-babel
 Requires:       python3-iso8601
 Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-six
-Requires:       python3-msgpack
+Requires:       python3-msgpack >= 0.5.2
 
 %description -n python3-%{pkg_name}
 %{common_desc}
@@ -128,11 +127,7 @@ Summary:    Documentation for the Oslo serialization library
 BuildRequires:  python2-sphinx
 BuildRequires:  python2-openstackdocstheme
 BuildRequires:  python2-oslo-utils
-%if 0%{?fedora} > 0
-BuildRequires:  python2-msgpack
-%else
-BuildRequires:  python-msgpack
-%endif
+BuildRequires:  python2-msgpack >= 0.5.2
 
 Requires:  python2-%{pkg_name} = %{version}-%{release}
 

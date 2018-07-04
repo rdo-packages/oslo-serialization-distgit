@@ -195,3 +195,4 @@ rm -rf .testrepository
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.serialization/commit/?id=dc592c68e351c1461e94610976b548081b451790

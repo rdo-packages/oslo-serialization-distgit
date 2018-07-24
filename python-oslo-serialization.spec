@@ -51,6 +51,7 @@ Requires:       python2-iso8601
 Requires:       python2-oslo-utils >= 3.33.0
 Requires:       python2-six
 Requires:       python2-msgpack >= 0.5.2
+Requires:       python2-pytz
 %if 0%{?fedora} > 0
 Requires:       python2-ipaddress
 %else
@@ -120,6 +121,7 @@ Requires:       python3-iso8601
 Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-six
 Requires:       python3-msgpack >= 0.5.2
+Requires:       python3-pytz
 
 %description -n python3-%{pkg_name}
 %{common_desc}

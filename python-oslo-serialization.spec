@@ -36,6 +36,8 @@ BuildRequires:  python2-mock
 BuildRequires:  python2-oslotest
 BuildRequires:  python2-oslo-i18n
 BuildRequires:  python2-stestr
+BuildRequires:  python2-oslo-utils
+BuildRequires:  python2-msgpack >= 0.5.2
 %if 0%{?fedora} > 0
 BuildRequires:  python2-netaddr
 BuildRequires:  python2-simplejson
@@ -51,6 +53,7 @@ Requires:       python2-iso8601
 Requires:       python2-oslo-utils >= 3.33.0
 Requires:       python2-six
 Requires:       python2-msgpack >= 0.5.2
+Requires:       python2-pytz
 %if 0%{?fedora} > 0
 Requires:       python2-ipaddress
 %else
@@ -114,12 +117,15 @@ BuildRequires:  python3-oslotest
 BuildRequires:  python3-simplejson
 BuildRequires:  python3-oslo-i18n
 BuildRequires:  python3-stestr
+BuildRequires:  python3-oslo-utils
+BuildRequires:  python3-msgpack >= 0.5.2
 
 Requires:       python3-babel
 Requires:       python3-iso8601
 Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-six
 Requires:       python3-msgpack >= 0.5.2
+Requires:       python3-pytz
 
 %description -n python3-%{pkg_name}
 %{common_desc}
@@ -130,8 +136,6 @@ Summary:    Documentation for the Oslo serialization library
 
 BuildRequires:  python2-sphinx
 BuildRequires:  python2-openstackdocstheme
-BuildRequires:  python2-oslo-utils
-BuildRequires:  python2-msgpack >= 0.5.2
 
 Requires:  python2-%{pkg_name} = %{version}-%{release}
 

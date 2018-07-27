@@ -1,0 +1,9 @@
+Code-Review+2: Alfredo Moralejo <amoralej@redhat.com>
+Workflow+1: Alfredo Moralejo <amoralej@redhat.com>
+Code-Review+2: hguemar <hguemar@fedoraproject.org>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Fri, 27 Jul 2018 22:52:12 +0000
+Reviewed-on: https://review.rdoproject.org/r/14986
+Project: openstack/oslo-serialization-distgit
+Branch: refs/heads/rpm-master

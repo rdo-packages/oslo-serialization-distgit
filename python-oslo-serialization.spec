@@ -151,7 +151,7 @@ rm -f requirements.txt
 %py2_build
 
 # doc
-python setup.py build_sphinx -b html
+%{__python2} setup.py build_sphinx -b html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
 

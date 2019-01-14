@@ -2,9 +2,11 @@
 %global pypi_name oslo.serialization
 %global pkg_name oslo-serialization
 
-%if 0%{?fedora} >= 24
+%if 0%{?fedora} >= 24 || 0%{?rhel} > 7
 %global with_python3 1
 %endif
+
+%global with_doc 1
 
 %global common_desc \
 An OpenStack library for representing objects in transmittable and \
@@ -38,7 +40,7 @@ BuildRequires:  python2-oslo-i18n
 BuildRequires:  python2-stestr
 BuildRequires:  python2-oslo-utils
 BuildRequires:  python2-msgpack >= 0.5.2
-%if 0%{?fedora} > 0
+%if 0%{?fedora} || 0%{?rhel} > 7
 BuildRequires:  python2-netaddr
 BuildRequires:  python2-simplejson
 BuildRequires:  python2-ipaddress
@@ -54,7 +56,7 @@ Requires:       python2-oslo-utils >= 3.33.0
 Requires:       python2-six
 Requires:       python2-msgpack >= 0.5.2
 Requires:       python2-pytz
-%if 0%{?fedora} > 0
+%if 0%{?fedora} || 0%{?rhel} > 7
 Requires:       python2-ipaddress
 %else
 Requires:       python-ipaddress
@@ -74,7 +76,7 @@ Requires:  python2-mock
 Requires:  python2-oslotest
 Requires:  python2-oslo-i18n
 Requires:  python2-stestr
-%if 0%{?fedora} > 0
+%if 0%{?fedora} || 0%{?rhel} > 7
 Requires:  python2-netaddr
 Requires:  python2-simplejson
 %else
@@ -131,6 +133,7 @@ Requires:       python3-pytz
 %{common_desc}
 %endif
 
+%if 0%{?with_doc}
 %package -n python-%{pkg_name}-doc
 Summary:    Documentation for the Oslo serialization library
 
@@ -141,6 +144,7 @@ Requires:  python2-%{pkg_name} = %{version}-%{release}
 
 %description -n python-%{pkg_name}-doc
 Documentation for the Oslo serialization library.
+%endif
 
 %prep
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
@@ -150,10 +154,12 @@ rm -f requirements.txt
 %build
 %py2_build
 
+%if 0%{?with_doc}
 # doc
 %{__python2} setup.py build_sphinx -b html
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.buildinfo
+%endif
 
 %if 0%{?with_python3}
 %py3_build
@@ -190,9 +196,11 @@ stestr --test-path $OS_TEST_PATH run
 %exclude %{python3_sitelib}/oslo_serialization/tests
 %endif
 
+%if 0%{?with_doc}
 %files -n python-%{pkg_name}-doc
 %doc doc/build/html
 %license LICENSE
+%endif
 
 %files -n python2-%{pkg_name}-tests
 %{python2_sitelib}/oslo_serialization/tests

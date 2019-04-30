@@ -211,3 +211,4 @@ stestr --test-path $OS_TEST_PATH run
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.serialization/commit/?id=0ceb4dbb6bd1b49244dcd1916213e13b36f945ff

@@ -175,9 +175,9 @@ rm -fr doc/build/html/.buildinfo
 %check
 export OS_TEST_PATH="./oslo_serialization/tests"
 %if 0%{?with_python3}
-stestr-3 --test-path $OS_TEST_PATH run
+PYTHON=python3 stestr-3 --test-path $OS_TEST_PATH run
 %endif
-stestr --test-path $OS_TEST_PATH run
+PYTHON=python2 stestr --test-path $OS_TEST_PATH run
 
 %files -n python2-%{pkg_name}
 %doc README.rst

@@ -211,3 +211,4 @@ PYTHON=python2 stestr --test-path $OS_TEST_PATH run
 %endif
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.serialization/commit/?id=4a76ab11d1c3fbc5d7ec9608b21f1cd3256d308b

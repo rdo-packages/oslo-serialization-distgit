@@ -137,3 +137,4 @@ PYTHON=python%{pyver} stestr-%{pyver} --test-path $OS_TEST_PATH run
 %{pyver_sitelib}/oslo_serialization/tests
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.serialization/commit/?id=ad356ea9c286c3bf3e953aa5b7c0c26766a28ad3

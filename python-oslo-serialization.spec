@@ -54,12 +54,10 @@ BuildRequires:  python%{pyver}-simplejson
 BuildRequires:  python-ipaddress
 %endif
 
-Requires:       python%{pyver}-babel
-Requires:       python%{pyver}-iso8601
 Requires:       python%{pyver}-oslo-utils >= 3.33.0
-Requires:       python%{pyver}-six
 Requires:       python%{pyver}-msgpack >= 0.5.2
 Requires:       python%{pyver}-pytz
+Requires:       python%{pyver}-debtcollector >= 1.2.0
 # Handle python2 exception
 %if %{pyver} == 2
 Requires:       python-ipaddress

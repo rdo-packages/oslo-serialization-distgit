@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2791e855_5abdf838",
+        "filename": "python-oslo-serialization.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-04-13T07:54:19Z",
+      "side": 1,
+      "message": "this can also be dropped.",
+      "range": {
+        "startLine": 57,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 36
+      },
+      "revId": "42f35a4f63bdb30e74922253e6c5280c00313f23",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}

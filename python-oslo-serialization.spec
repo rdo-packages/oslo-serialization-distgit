@@ -10,7 +10,7 @@ storable formats.
 
 Name:           python-%{pkg_name}
 Version:        3.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -29,7 +29,6 @@ BuildRequires:  git
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
 # test requirements
-BuildRequires:  python3-hacking
 BuildRequires:  python3-mock
 BuildRequires:  python3-oslotest
 BuildRequires:  python3-oslo-i18n
@@ -53,7 +52,6 @@ Summary:   Tests for OpenStack Oslo serialization library
 %{?python_provide:%python_provide python2-%{pkg_name}}
 
 Requires:  python3-%{pkg_name} = %{version}-%{release}
-Requires:  python3-hacking
 Requires:  python3-mock
 Requires:  python3-oslotest
 Requires:  python3-oslo-i18n
@@ -116,6 +114,9 @@ PYTHON=python3 stestr-3 --test-path $OS_TEST_PATH run
 %{python3_sitelib}/oslo_serialization/tests
 
 %changelog
+* Tue Jun 09 2020 RDO <jcapitao@redhat.com> 3.1.1-2
+- Remove hacking as build requirement
+
 * Thu Apr 23 2020 RDO <dev@lists.rdoproject.org> 3.1.1-1
 - Update to 3.1.1
 

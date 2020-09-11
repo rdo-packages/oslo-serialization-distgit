@@ -41,7 +41,6 @@ BuildRequires:  python3-simplejson
 Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-msgpack >= 0.5.2
 Requires:       python3-pytz
-Requires:       python3-debtcollector >= 1.2.0
 
 %description -n python3-%{pkg_name}
 %{common_desc}

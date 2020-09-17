@@ -9,8 +9,8 @@ An OpenStack library for representing objects in transmittable and \
 storable formats.
 
 Name:           python-%{pkg_name}
-Version:        XXX
-Release:        XXX
+Version:        4.0.1
+Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -113,3 +113,6 @@ PYTHON=python3 stestr-3 --test-path $OS_TEST_PATH run
 %{python3_sitelib}/oslo_serialization/tests
 
 %changelog
+* Thu Sep 17 2020 RDO <dev@lists.rdoproject.org> 4.0.1-1
+- Update to 4.0.1
+

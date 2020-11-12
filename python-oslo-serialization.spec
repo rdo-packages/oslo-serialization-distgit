@@ -38,7 +38,7 @@ BuildRequires:  openstack-macros
 Summary:        OpenStack oslo.serialization library
 %{?python_provide:%python_provide python3-%{pkg_name}}
 
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
 # test requirements

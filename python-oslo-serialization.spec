@@ -20,8 +20,8 @@ An OpenStack library for representing objects in transmittable and \
 storable formats.
 
 Name:           python-%{pkg_name}
-Version:        2.29.2
-Release:        2%{?dist}
+Version:        2.29.3
+Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -137,6 +137,9 @@ PYTHON=python%{pyver} stestr-%{pyver} --test-path $OS_TEST_PATH run
 %{pyver_sitelib}/oslo_serialization/tests
 
 %changelog
+* Mon Feb 15 2021 RDO <dev@lists.rdoproject.org> 2.29.3-1
+- Update to 2.29.3
+
 * Thu Oct 03 2019 Joel Capitao <jcapitao@redhat.com> 2.29.2-2
 - Removed python2 subpackages in no el7 distros
 

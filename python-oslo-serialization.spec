@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x01527a34f0d0080f8a5db8d6eb6c5df21b4b6363
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global pypi_name oslo.serialization
@@ -11,8 +11,8 @@ An OpenStack library for representing objects in transmittable and \
 storable formats.
 
 Name:           python-%{pkg_name}
-Version:        XXX
-Release:        XXX
+Version:        4.3.0
+Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        ASL 2.0
@@ -131,3 +131,6 @@ PYTHON=python3 stestr-3 --test-path $OS_TEST_PATH run
 %{python3_sitelib}/oslo_serialization/tests
 
 %changelog
+* Fri Mar 11 2022 RDO <dev@lists.rdoproject.org> 4.3.0-1
+- Update to 4.3.0
+

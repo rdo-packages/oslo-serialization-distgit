@@ -42,7 +42,6 @@ BuildRequires:  git-core
 BuildRequires:  python3-devel
 BuildRequires:  python3-pbr
 # test requirements
-BuildRequires:  python3-mock
 BuildRequires:  python3-oslotest
 BuildRequires:  python3-oslo-i18n
 BuildRequires:  python3-stestr
@@ -65,7 +64,6 @@ Summary:   Tests for OpenStack Oslo serialization library
 %{?python_provide:%python_provide python2-%{pkg_name}}
 
 Requires:  python3-%{pkg_name} = %{version}-%{release}
-Requires:  python3-mock
 Requires:  python3-oslotest
 Requires:  python3-oslo-i18n
 Requires:  python3-stestr

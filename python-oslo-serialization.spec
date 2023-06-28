@@ -2,6 +2,8 @@
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order
 %global pypi_name oslo.serialization
 %global pkg_name oslo-serialization
 %global with_doc 1
@@ -15,7 +17,7 @@ Version:        XXX
 Release:        XXX
 Summary:        OpenStack oslo.serialization library
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            https://launchpad.net/oslo
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
@@ -23,6 +25,9 @@ Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstr
 Source101:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz.asc
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
+#TODO(jcapitao): remove the line below once https://review.opendev.org/c/openstack/oslo.serialization/+/887141
+# is merged and contained in a tag.
+Patch0001:        0001-Remove-extra-spaces-in-tox.ini.patch
 BuildArch:      noarch
 
 # Required for tarball sources verification
@@ -36,32 +41,16 @@ BuildRequires:  openstack-macros
 
 %package -n python3-%{pkg_name}
 Summary:        OpenStack oslo.serialization library
-%{?python_provide:%python_provide python3-%{pkg_name}}
 
 BuildRequires:  git-core
 BuildRequires:  python3-devel
-BuildRequires:  python3-pbr
-# test requirements
-BuildRequires:  python3-oslotest
-BuildRequires:  python3-oslo-i18n
-BuildRequires:  python3-stestr
-BuildRequires:  python3-oslo-utils
-BuildRequires:  python3-msgpack >= 0.5.2
-BuildRequires:  python3-netaddr
-BuildRequires:  python3-simplejson
-
-Requires:       python3-oslo-utils >= 3.33.0
-Requires:       python3-msgpack >= 0.5.2
-Requires:       python3-pytz
-Requires:       python3-pbr >= 2.0.0
-
+BuildRequires:  pyproject-rpm-macros
 %description -n python3-%{pkg_name}
 %{common_desc}
 
 
 %package -n python3-%{pkg_name}-tests
 Summary:   Tests for OpenStack Oslo serialization library
-%{?python_provide:%python_provide python2-%{pkg_name}}
 
 Requires:  python3-%{pkg_name} = %{version}-%{release}
 Requires:  python3-oslotest
@@ -77,9 +66,6 @@ Tests for OpenStack Oslo serialization library
 %package -n python-%{pkg_name}-doc
 Summary:    Documentation for the Oslo serialization library
 
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-openstackdocstheme
-
 Requires:  python3-%{pkg_name} = %{version}-%{release}
 
 %description -n python-%{pkg_name}-doc
@@ -92,31 +78,51 @@ Documentation for the Oslo serialization library.
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
-# Let RPM handle the dependencies
-rm -f requirements.txt
+
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
+
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs};do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+# Automatic BR generation
+%generate_buildrequires
+%if 0%{?with_doc}
+  %pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+  %pyproject_buildrequires -t -e %{default_toxenv}
+%endif
 
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if 0%{?with_doc}
 # doc
-sphinx-build-3 -W -b html doc/source doc/build/html
+%tox -e docs
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.{doctrees,buildinfo}
 %endif
 
 %install
-%{py3_install}
+%pyproject_install
 
 %check
 export OS_TEST_PATH="./oslo_serialization/tests"
-PYTHON=python3 stestr-3 --test-path $OS_TEST_PATH run
+%tox -e %{default_toxenv}
 
 %files -n python3-%{pkg_name}
 %doc README.rst
 %license LICENSE
 %{python3_sitelib}/oslo_serialization
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %exclude %{python3_sitelib}/oslo_serialization/tests
 
 %if 0%{?with_doc}

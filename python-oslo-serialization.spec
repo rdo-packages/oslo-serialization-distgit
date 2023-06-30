@@ -146,3 +146,4 @@ export OS_TEST_PATH="./oslo_serialization/tests"
 %{python3_sitelib}/oslo_serialization/tests
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/oslo.serialization/commit/b4be3a46032bd20c83847dd4ec32c49feddc5768

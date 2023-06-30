@@ -51,6 +51,24 @@
       "message": "let\u0027s wait https://review.opendev.org/c/openstack/oslo.serialization/+/887141 to be merged and build in Trunk",
       "revId": "8cbf90f43cc3fb0e37da00188616166a35bdf4cd",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d516d2f3_d00c62ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-06-30T07:44:24Z",
+      "side": 1,
+      "message": "it\u0027s now merged",
+      "parentUuid": "c5b1ab18_519faa26",
+      "revId": "8cbf90f43cc3fb0e37da00188616166a35bdf4cd",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "179ea4cb_ec729205",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-07-03T15:25:31Z",
+      "side": 1,
+      "message": "https://review.rdoproject.org/r/c/openstack/oslo-serialization-distgit/+/49135 should fix this FTBFS",
+      "revId": "beba916dad06968fe4e2bb6b1cb13562c2b42187",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}

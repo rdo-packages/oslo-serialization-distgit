@@ -32,6 +32,11 @@ Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstr
 Source101:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz.asc
 Source102:        https://releases.openstack.org/_static/%{sources_gpg_sign}.txt
 %endif
+%if %{lua:print(rpm.vercmp(rpm.expand("%{version}"), '5.2.0'));} < 0
+#TODO(jcapitao): remove the line below once https://review.opendev.org/c/openstack/oslo.serialization/+/887141
+# is contained in a tag.
+Patch0001:        0001-Remove-extra-spaces-in-tox.ini.patch
+%endif
 BuildArch:      noarch
 
 # Required for tarball sources verification

@@ -20,8 +20,8 @@ An OpenStack library for representing objects in transmittable and \
 storable formats.
 
 Name:           python-%{pkg_name}
-Version:        XXX
-Release:        XXX
+Version:        5.2.0
+Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
 License:        Apache-2.0
@@ -151,3 +151,6 @@ export OS_TEST_PATH="./oslo_serialization/tests"
 %{python3_sitelib}/oslo_serialization/tests
 
 %changelog
+* Fri Sep 01 2023 RDO <dev@lists.rdoproject.org> 5.2.0-1
+- Update to 5.2.0
+

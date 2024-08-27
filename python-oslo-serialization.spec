@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x815AFEC729392386480E076DCC0DFE2D21C023C9
+%global sources_gpg_sign 0xf8675126e2411e7748dd46662fc2093e4682645f
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 # we are excluding some runtime reqs from automatic generator
@@ -20,7 +20,7 @@ An OpenStack library for representing objects in transmittable and \
 storable formats.
 
 Name:           python-%{pkg_name}
-Version:        5.2.0
+Version:        5.2.1
 Release:        1%{?dist}
 Summary:        OpenStack oslo.serialization library
 
@@ -151,6 +151,9 @@ export OS_TEST_PATH="./oslo_serialization/tests"
 %{python3_sitelib}/oslo_serialization/tests
 
 %changelog
+* Tue Aug 27 2024 RDO <dev@lists.rdoproject.org> 5.2.1-1
+- Update to 5.2.1
+
 * Fri Sep 01 2023 RDO <dev@lists.rdoproject.org> 5.2.0-1
 - Update to 5.2.0
 

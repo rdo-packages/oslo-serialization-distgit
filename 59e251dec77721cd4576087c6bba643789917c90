@@ -1,0 +1,8 @@
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Code-Review+2: Joel Capitao <jcapitao@redhat.com>
+Workflow+1: Joel Capitao <jcapitao@redhat.com>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Fri, 13 Sep 2024 08:08:40 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/oslo-serialization-distgit/+/54170
+Project: openstack/oslo-serialization-distgit
+Branch: refs/heads/caracal-rdo
